@@ -1,0 +1,4 @@
+model,auc,f1,recall_infill_reduction,recall_layer_height_change,recall_scaling,recall_temperature_shift,recall_toolpath_jitter,recall_under_extrusion,recall_void_insertion,false_positive_rate
+logreg,0.624,0.539,0.4,0.4,0.4,0.4,0.6,0.4,0.4,0.38
+random_forest,0.869,0.891,1.0,1.0,0.8,1.0,1.0,1.0,0.73,0.38
+gbc,0.876,0.856,0.8,1.0,0.8,1.0,0.8,1.0,0.33,0.22

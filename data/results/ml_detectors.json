@@ -1,0 +1,41 @@
+[
+  {
+    "model": "logreg",
+    "auc": 0.624,
+    "f1": 0.539,
+    "recall_infill_reduction": 0.4,
+    "recall_layer_height_change": 0.4,
+    "recall_scaling": 0.4,
+    "recall_temperature_shift": 0.4,
+    "recall_toolpath_jitter": 0.6,
+    "recall_under_extrusion": 0.4,
+    "recall_void_insertion": 0.4,
+    "false_positive_rate": 0.38
+  },
+  {
+    "model": "random_forest",
+    "auc": 0.869,
+    "f1": 0.891,
+    "recall_infill_reduction": 1.0,
+    "recall_layer_height_change": 1.0,
+    "recall_scaling": 0.8,
+    "recall_temperature_shift": 1.0,
+    "recall_toolpath_jitter": 1.0,
+    "recall_under_extrusion": 1.0,
+    "recall_void_insertion": 0.73,
+    "false_positive_rate": 0.38
+  },
+  {
+    "model": "gbc",
+    "auc": 0.876,
+    "f1": 0.856,
+    "recall_infill_reduction": 0.8,
+    "recall_layer_height_change": 1.0,
+    "recall_scaling": 0.8,
+    "recall_temperature_shift": 1.0,
+    "recall_toolpath_jitter": 0.8,
+    "recall_under_extrusion": 1.0,
+    "recall_void_insertion": 0.33,
+    "false_positive_rate": 0.22
+  }
+]

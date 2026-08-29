@@ -1,0 +1,10 @@
+{
+  "infill_reduction": 0.8,
+  "layer_height_change": 1.0,
+  "none": 0.0,
+  "scaling": 1.0,
+  "temperature_shift": 1.0,
+  "toolpath_jitter": 0.8,
+  "under_extrusion": 1.0,
+  "void_insertion": 0.6
+}
