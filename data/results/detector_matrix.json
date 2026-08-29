@@ -1,0 +1,53 @@
+{
+ "attacks": [
+  "infill_reduction",
+  "void_insertion",
+  "layer_height_change",
+  "temperature_shift",
+  "scaling",
+  "under_extrusion",
+  "toolpath_jitter"
+ ],
+ "rows": {
+  "rules (ref-compare)": [
+   1.0,
+   0.75,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   0.3333333333333333
+  ],
+  "logreg (ref-free)": [
+   0.5,
+   0.5,
+   0.4,
+   0.4,
+   0.4,
+   0.4,
+   0.75,
+   0.38
+  ],
+  "random_forest (ref-free)": [
+   1.0,
+   0.67,
+   1.0,
+   1.0,
+   0.8,
+   1.0,
+   1.0,
+   0.38
+  ],
+  "gbc (ref-free)": [
+   1.0,
+   0.42,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   0.22
+  ]
+ }
+}

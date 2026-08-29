@@ -22,7 +22,8 @@ def detect(reference: str, suspect: str) -> tuple[bool, list[str]]:
         reasons.append("infill")
     if b["jitter_score"] > a["jitter_score"] + 0.2:
         reasons.append("toolpath_noise")
-    if b["frac_travel_in_fill"] > a["frac_travel_in_fill"] + 0.02:
+    if (b["max_layer_travel_fill"] > a["max_layer_travel_fill"] + 0.04
+            or b["frac_travel_in_fill"] > a["frac_travel_in_fill"] + 0.04):
         reasons.append("missing_extrusion")
     return bool(reasons), reasons
 

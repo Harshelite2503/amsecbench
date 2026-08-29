@@ -7,7 +7,7 @@ from amsec.gcode import layer_summary, parse
 
 FEATURES = ["n_layers", "layer_dz_med", "layer_dz_std", "e_per_mm_med", "e_per_mm_cv", "e_per_mm_min_ratio",
             "fill_ratio_med", "fill_ratio_std", "fill_ratio_min_ratio", "path_len_cv", "n_temp_cmds",
-            "temp_first", "temp_min", "bbox_x", "bbox_y", "jitter_score", "frac_travel_in_fill"]
+            "temp_first", "temp_min", "bbox_x", "bbox_y", "jitter_score", "frac_travel_in_fill", "max_layer_travel_fill"]
 
 def featurize(text: str) -> dict:
     df = parse(text); s = layer_summary(df)
@@ -19,6 +19,8 @@ def featurize(text: str) -> dict:
     ang = np.degrees(np.arctan2(fill.y1 - fill.y0, fill.x1 - fill.x0)) % 180
     jitter = float(np.mean(np.minimum(np.abs(ang - 45), np.abs(ang - 135)))) if len(ang) else 0.0
     travel_in_fill = df[(df.kind == "FILL") & ~df.is_extrude]
+    per_layer = (travel_in_fill.groupby("layer").size() / fill.groupby("layer").size()).dropna()
+    max_layer_travel = float(per_layer.max()) if len(per_layer) else 0.0
     epm = s.e_per_mm.replace(0, np.nan).dropna()
     fr = s.fill_ratio.replace(0, np.nan).dropna()
     return {
@@ -32,4 +34,5 @@ def featurize(text: str) -> dict:
         "n_temp_cmds": len(temps), "temp_first": temps[0] if temps else 0.0, "temp_min": min(temps) if temps else 0.0,
         "bbox_x": float(s.xmax.max() - s.xmin.min()), "bbox_y": float(s.ymax.max() - s.ymin.min()),
         "jitter_score": jitter, "frac_travel_in_fill": float(len(travel_in_fill) / max(1, len(fill))),
+        "max_layer_travel_fill": max_layer_travel,
     }

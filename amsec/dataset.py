@@ -38,11 +38,13 @@ def build(seeds: int = 3, renders: bool = True) -> pd.DataFrame:
             q = PrintParams(**{**p.__dict__, **kw}); g = slice_to_gcode(mesh, q, stl.stem)
             bp = GCODE_DIR / f"{stl.stem}_benign{k}.gcode"; bp.write_text(g)
             rows.append({"part": stl.stem, "attack": "none", "seed": k + 1, "path": str(bp),
-                         "reference_path": str(bp), "meta": json.dumps(kw), **featurize(g)})
+                         "reference_path": str(ref_path), "meta": json.dumps(kw), **featurize(g)})
         for seed in range(seeds):
             rng = random.Random(1000 * seed + hash(stl.stem) % 1000)
             for name, fn in ATTACKS.items():
                 text, meta = fn(clean, mesh, p, rng)
+                if text == clean:  # attack had no effect on this geometry (e.g. no infill) -> skip, not label noise
+                    continue
                 path = GCODE_DIR / f"{stl.stem}_{name}_s{seed}.gcode"; path.write_text(text)
                 if renders and seed == 0: render(text, RENDER_DIR / f"{stl.stem}_{name}_s{seed}.png")
                 rows.append({"part": stl.stem, "attack": name, "seed": seed, "path": str(path),

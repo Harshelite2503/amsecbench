@@ -45,7 +45,9 @@ Toy re-implementation of design-based security (Chen & Gupta): decoy features an
 The question is whether an LLM/VLM given the obfuscated STL + renders recovers the intended part (IoU).
 
 ## Status
-- [x] parts, slicer, 7 attacks, features, renders, rule + ML detectors, tests
+- [x] parts, slicer, 7 attacks, benign variants, features, renders, rule + ML detectors, tests (161 files)
+- [x] baselines: rules 75–100% detection but 33% FPR on benign variants; ref-free ML AUC ≈ 0.86, FPR 22–38%
+- [x] research proposal: `docs/AMSecBench_Research_Proposal.docx`
 - [x] LLM/VLM detector code, obfuscation generator
 - [ ] LLM/VLM runs (needs key), de-obfuscation experiment, real-slicer (PrusaSlicer) variant, paper
 
