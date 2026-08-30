@@ -10,3 +10,4 @@ data/gcode/*
 data/renders/*
 !data/renders/.gitkeep
 .DS_Store
+~$*.docx
